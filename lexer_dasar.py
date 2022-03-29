@@ -1,49 +1,44 @@
 from sly import Lexer
 
-class BasicLexer(Lexer):
-    tokens = { NAME, NUMBER, STRING, IF, THEN, ELSE, FOR, FUN, TO, ARROW, LEBIHBESAR, LEBIHKECIL, MOD, EQEQ }
+class lexerDasar(Lexer):
+    tokens = {NAMA, ANGKA, STRING, JIKA, MAKA, LAIN, UNTUK, FUNC, HINGGA, SAMADENGAN, SISA}
     ignore = '\t '
 
-    literals = { '=', '+', '-', '/', '*', '(', ')', ',', ';'}
+    literals = {'=', '+', '-', '/', '*', '(', ')', ',', ';', '<', '>', '<=', '>='}
 
-    # Define tokens
-    IF = r'IF'
-    THEN = r'DO'
-    ELSE = r'ELSE'
-    FOR = r'FOR'
-    FUNC = r'FUNC'
-    TO = r'TO'
-    ARROW = r'->'
-    NAME = r'[a-zA-Z_][a-zA-Z0-9_]*'
-    LEBIHBESAR = r'(>=|>)'
-    LEBIHKECIL = r'(<=|<)'
-    MOD = r'%'
+    #Definisi Token
+    NAMA = r'[a-zA-Z_][a-zA-Z0-9_]*'
     STRING = r'\".*?\"'
-
-    EQEQ = r'=='
+    JIKA = r'JIKA'
+    MAKA = r'MAKA'
+    LAIN = r'LAIN'
+    UNTUK = r'UNTUK'
+    FUNC = r'FUNC'
+    HINGGA = r'HINGGA'
+    SAMADENGAN = r'=='
+    SISA = r'%'
 
     @_(r'\d+')
-    def NUMBER(self, t):
+    def ANGKA(self, t):
         t.value = int(t.value)
         return t
-
+    
     @_(r'#.*')
     def COMMENT(self, t):
         pass
 
     @_(r'\n+')
-    def newline(self,t ):
+    def newline(self, t):
         self.lineno = t.value.count('\n')
 
-
-
 if __name__ == '__main__':
-    lexer = BasicLexer()
+    lexer = lexerDasar()
     env = {}
     while True:
         try:
-            text = input('basic > ')
+            text = input('bpb> ')
         except EOFError:
+            print("Program Error")
             break
         if text:
             lex = lexer.tokenize(text)
