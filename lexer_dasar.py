@@ -1,10 +1,10 @@
 from sly import Lexer
 
 class lexerDasar(Lexer):
-    tokens = {NAMA, ANGKA, STRING, JIKA, MAKA, LAIN, UNTUK, FUNC, HINGGA, SAMADENGAN, SISA}
+    tokens = {NAMA, ANGKA, STRING, JIKA, MAKA, LAIN, UNTUK, FUNC, HINGGA, SAMADENGAN}
     ignore = '\t '
 
-    literals = {'=', '+', '-', '/', '*', '(', ')', ',', ';', '<', '>', '<=', '>='}
+    literals = {'=', '+', '-', '/', '*', '(', ')', ',', ';', '<', '>', '<=', '>=', '%'}
 
     #Definisi Token
     NAMA = r'[a-zA-Z_][a-zA-Z0-9_]*'
@@ -16,7 +16,6 @@ class lexerDasar(Lexer):
     FUNC = r'FUNC'
     HINGGA = r'HINGGA'
     SAMADENGAN = r'=='
-    SISA = r'%'
 
     @_(r'\d+')
     def ANGKA(self, t):
