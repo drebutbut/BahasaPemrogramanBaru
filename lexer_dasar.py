@@ -7,8 +7,6 @@ class lexerDasar(Lexer):
     literals = {'=', '+', '-', '/', '*', '(', ')', ',', ';', '<', '>', '<=', '>=', '%'}
 
     #Definisi Token
-    NAMA = r'[a-zA-Z_][a-zA-Z0-9_]*'
-    STRING = r'\".*?\"'
     JIKA = r'JIKA'
     MAKA = r'MAKA'
     LAIN = r'LAIN'
@@ -16,6 +14,8 @@ class lexerDasar(Lexer):
     FUNC = r'FUNC'
     HINGGA = r'HINGGA'
     SAMADENGAN = r'=='
+    NAMA = r'[a-zA-Z_][a-zA-Z0-9_]*'
+    STRING = r'\".*?\"'
 
     @_(r'\d+')
     def ANGKA(self, t):
