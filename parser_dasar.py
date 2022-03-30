@@ -8,8 +8,6 @@ class lexerDasar(Lexer):
     literals = {'=', '+', '-', '/', '*', '(', ')', ',', ';', '<', '>', '<=', '>=', '%'}
 
     #Definisi Token
-    NAMA = r'[a-zA-Z_][a-zA-Z0-9_]*'
-    STRING = r'\".*?\"'
     JIKA = r'JIKA'
     MAKA = r'MAKA'
     LAIN = r'LAIN'
@@ -17,6 +15,8 @@ class lexerDasar(Lexer):
     FUNC = r'FUNC'
     HINGGA = r'HINGGA'
     SAMADENGAN = r'=='
+    NAMA = r'[a-zA-Z_][a-zA-Z0-9_]*'
+    STRING = r'\".*?\"'
 
     @_(r'\d+')
     def ANGKA(self, t):
@@ -49,23 +49,23 @@ class parserDasar(Parser):
 
     @_('UNTUK var_assign HINGGA expr MAKA statement')
     def statement(self, p):
-        return('for_loop', ('for_loop_setup', p.var_assign, p.expr), p.statement)
+        return('untuk_loop', ('untuk_loop_setup', p.var_assign, p.expr), p.statement)
     
     @_('JIKA condition MAKA statement LAIN statement')
     def statement(self, p):
-        return('if_stmt', p.condition, ('branch', p.statement0, p.statement1))
+        return('jika', p.condition, ('branch', p.statement0, p.statement1))
     
     @_('FUNC NAMA "(" ")" statement')
     def statement(self, p):
-        return('fun_def', p.name, p.statement)
+        return('fungsi', p.name, p.statement)
     
     @_('NAMA "(" ")"')
     def statement(self, p):
-        return('fun_call', p.NAMA)
+        return('panggilFungsi', p.NAMA)
     
     @_('expr SAMADENGAN expr')
     def condition(self, p):
-        return('condition_eqeq', p.expr0, p.expr1)
+        return('samadengan', p.expr0, p.expr1)
     
     @_('var_assign')
     def statement(self, p):
@@ -85,19 +85,19 @@ class parserDasar(Parser):
     
     @_('expr "+" expr')
     def expr(self, p):
-        return ('add', p.expr0, p.expr1)
+        return ('tambah', p.expr0, p.expr1)
 
     @_('expr "-" expr')
     def expr(self, p):
-        return ('sub', p.expr0, p.expr1)
+        return ('kurang', p.expr0, p.expr1)
     
     @_('expr "/" expr')
     def expr(self, p):
-        return ('div', p.expr0, p.expr1)
+        return ('bagi', p.expr0, p.expr1)
     
     @_('expr "*" expr')
     def expr(self, p):
-        return ('mul', p.expr0, p.expr1)
+        return ('kali', p.expr0, p.expr1)
     
     @_('expr "%" expr')
     def expr(self, p):
@@ -125,6 +125,7 @@ class parserDasar(Parser):
 
 if __name__ == '__main__':
     lexer = lexerDasar()
+    parser = parserDasar()
     env = {}
     while True:
         try:
@@ -133,6 +134,5 @@ if __name__ == '__main__':
             print("Program Error")
             break
         if text:
-            lex = lexer.tokenize(text)
-            for token in lex:
-                print(token)
+            tree = parser.parse(lexer.tokenize(text))
+            print(tree)
