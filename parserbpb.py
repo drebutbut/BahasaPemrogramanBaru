@@ -82,7 +82,7 @@ class parserbpb(Parser):
     
     @_('VAR "=" STRING')
     def assign(self, p):
-        return('var_assign', p.VAR, p.STRING)
+        return('assign', p.VAR, p.STRING)
     
     @_('CETAK expr')
     def expr(self, p):
