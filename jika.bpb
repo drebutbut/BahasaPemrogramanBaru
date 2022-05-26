@@ -1,0 +1,18 @@
+a = 10
+b = 100
+
+cetak "nilai a: "
+cetak a
+cetak "nilai b: "
+cetak b
+
+jika a == b maka cetak "a sama dengan b" lain cetak "a tidak sama dengan b"
+
+a = a * 10
+
+cetak "nilai a: "
+cetak a
+cetak "nilai b: "
+cetak b
+
+jika a == b maka cetak "a sama dengan b" lain cetak "a tidak sama dengan b"

@@ -1,0 +1,15 @@
+func fungsiBPB() lakukan cetak "Bahasa Pemrograman Baru"
+
+fungsiBPB()
+
+a = 5
+cetak a
+
+func tambahLima() lakukan a = a + 5
+
+tambahLima()
+cetak a
+
+fungsiBPB()
+tambahLima()
+cetak a

@@ -1,0 +1,25 @@
+a = 5
+b = 10
+
+c = a + b
+d = a - b
+e = a * b
+f = b / a
+
+cetak "Nilai a: "
+cetak a
+
+cetak "Nilai b: "
+cetak b
+
+cetak "Hasil penjumlahan a dan b: "
+cetak c
+
+cetak "Hasil pengurangan b dari a: "
+cetak d
+
+cetak "Hasil perkalian a dan b: "
+cetak e
+
+cetak "Hasil pembagian a dan b: "
+cetak f

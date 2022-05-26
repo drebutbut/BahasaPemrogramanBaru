@@ -1,0 +1,6 @@
+a = 5
+b = 20
+
+func nilaiSama() lakukan cetak "Nilai Sama"
+
+untuk i = 0 hingga 5 maka jika a==b maka nilaiSama() lain a = a + 5
