@@ -44,8 +44,8 @@ class lexerbpb(Lexer):
     CETAK       = r'cetak'
     HINGGA      = r'hingga'
 
-    STRING          = r'\".*?\"'
     VAR             = r'[a-zA-Z_][a-zA-Z0-9_]*'
+    STRING          = r'\".*?\"'
 
     # Abaikan komentar
     ignore_comment = r'\#.*'
